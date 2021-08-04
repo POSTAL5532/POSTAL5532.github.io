@@ -1,0 +1,17 @@
+.gradle
+.idea/
+*.iml
+node_modules/
+.webpack/
+build/
+out/
+system/
+
+.DS_Store
+.env
+.env.test
+*.http
+application.properties
+application-dev.properties
+application-prod.properties
+gradle.properties

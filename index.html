@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ThreeJS training 3</title>
+    <link rel="stylesheet" href="css/styles3.css">
+    <script src="js/three.js"></script>
+    <script src="js/game.js"></script>
+</head>
+<body>
+
+<script>
+    const game = new Game();
+    game.init();
+    game.addCube({position: game.getVector(0,0,0)});
+
+    getSpeed = (pressedKeys) => {
+        return pressedKeys["ShiftLeft"] || pressedKeys["ShiftRight"] ? 0.08 : 0.03;
+    }
+
+    game.onArrowDown("ArrowUp", (pressedKeys) => {
+        game.camera.position.y -= getSpeed(pressedKeys);
+    });
+
+    game.onArrowDown("ArrowDown", (pressedKeys) => {
+        game.camera.position.y += getSpeed(pressedKeys);
+    });
+
+    game.onArrowDown("ArrowLeft", (pressedKeys) => {
+        game.camera.position.x += getSpeed(pressedKeys);
+    });
+
+    game.onArrowDown("ArrowRight", (pressedKeys) => {
+        game.camera.position.x -= getSpeed(pressedKeys);
+    });
+
+    game.onKeyDown("q", (pressedKeys) => {
+        game.camera.position.z -= getSpeed(pressedKeys);
+    });
+
+    game.onKeyDown("e", (pressedKeys) => {
+        game.camera.position.z += getSpeed(pressedKeys);
+    });
+
+
+    game.onKeyDown("w", (pressedKeys) => {
+        game.cubes.forEach(cube => cube.rotation.x -= getSpeed(pressedKeys));
+    });
+
+    game.onKeyDown("s", (pressedKeys) => {
+        game.cubes.forEach(cube => cube.rotation.x += getSpeed(pressedKeys));
+    });
+
+    game.onKeyDown("a", (pressedKeys) => {
+        game.cubes.forEach(cube => cube.rotation.y -= getSpeed(pressedKeys));
+    });
+
+    game.onKeyDown("d", (pressedKeys) => {
+        game.cubes.forEach(cube => cube.rotation.y += getSpeed(pressedKeys));
+    });
+
+    game.onKeyDown("q", (pressedKeys) => {
+        game.cubes.forEach(cube => cube.rotation.z += getSpeed(pressedKeys));
+    });
+
+    game.onKeyDown("e", (pressedKeys) => {
+        game.cubes.forEach(cube => cube.rotation.z -= getSpeed(pressedKeys));
+    });
+</script>
+
+</body>
+</html>
