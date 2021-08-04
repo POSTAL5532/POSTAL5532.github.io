@@ -23,6 +23,10 @@ body {
     padding: 10px;
 }
 
+.control-description p {
+    line-height: 30px;
+}
+
 .control-description .control {
     font-weight: 900;
     color: red;
