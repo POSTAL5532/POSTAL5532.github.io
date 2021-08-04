@@ -62,7 +62,8 @@ class Game {
     }
 
     initRenderer = () => {
-        this.renderer = new THREE.WebGLRenderer();
+        const canvas = document.querySelector("#canvas");
+        this.renderer = new THREE.WebGLRenderer({canvas});
         this.renderer.setSize(window.innerWidth, window.innerHeight);
     }
 

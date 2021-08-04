@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>ThreeJS training 3</title>
-    <link rel="stylesheet" href="css/styles3.css">
-    <script src="js/three.js"></script>
-    <script src="js/game.js"></script>
+    <link rel="stylesheet" href="css/game.css">
 </head>
 <body>
+
+<canvas id="canvas"></canvas>
+
+<script src="js/three.js"></script>
+<script src="js/game.js"></script>
 
 <script>
     const game = new Game();
@@ -67,6 +70,25 @@
         game.cubes.forEach(cube => cube.rotation.z -= getSpeed(pressedKeys));
     });
 </script>
+
+<div class="control-description">
+    <p>
+        Use
+        <span class="control">W</span>,
+        <span class="control">A</span>,
+        <span class="control">S</span> and
+        <span class="control">D</span>
+        for cube rotation.
+    </p>
+
+    <p>
+        Use <span class="control">ARROWS</span> for cube moving.
+    </p>
+
+    <p>
+        Use <span class="control">SHIFT</span> for speed changing.
+    </p>
+</div>
 
 </body>
 </html>
