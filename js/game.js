@@ -8,12 +8,18 @@ class Game {
 
     renderer;
 
+    /**
+     * Объект мапит обработчики на события, обработчики в свою очередь мапятся на конкретную клавишу.
+     */
     keysEvents = {
         keydown: new Map(),
         keypress: new Map(),
         keyup: new Map()
     };
 
+    /**
+     * Содержит нажатые в данный момент клавиши.
+     */
     pressedKeys = {};
 
     init = () => {
@@ -37,10 +43,16 @@ class Game {
         });
     }
 
+    /**
+     * Мапит обработчик на конкретную клавишу.
+     */
     onKeyDown = (key, handler) => {
         this.keysEvents["keydown"].set(`Key${key.toUpperCase()}`, handler);
     }
 
+    /**
+     * Мапит обработчик на стрелки.
+     */
     onArrowDown = (arrow, handler) => {
         this.keysEvents["keydown"].set(arrow, handler);
     }
@@ -72,6 +84,9 @@ class Game {
         this.camera.position.z = 5;
     }
 
+    /**
+     * Достаёт ключи нажатых клавиш, по этим ключам ищет наличие замапленых обработчиков и исполняет их.
+     */
     handleKeysEvents = () => {
         Object.keys(this.pressedKeys).forEach(key => {
             const keyIsPressed = this.pressedKeys[key];
