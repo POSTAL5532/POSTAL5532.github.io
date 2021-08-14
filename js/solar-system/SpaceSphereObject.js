@@ -1,11 +1,9 @@
 import * as THREE from "../three.module.js";
-import {Native3DObject} from "./Native3DObject.js";
+import {RotatableObject} from "./RotatableObject.js";
 
 const {SphereGeometry, MeshPhongMaterial, Mesh} = THREE;
 
-export class SolarSystemObject extends Native3DObject{
-
-    rotationSpeed = 0.01;
+export class SpaceSphereObject extends RotatableObject {
 
     sphereGeometry;
 
@@ -31,9 +29,5 @@ export class SolarSystemObject extends Native3DObject{
 
     getObject = () => {
         return this.sphereGeometry;
-    }
-
-    rotateObjectY = () => {
-        this.getObject().rotation.y += this.rotationSpeed;
     }
 }
