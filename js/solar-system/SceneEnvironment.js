@@ -36,7 +36,7 @@ export class SceneEnvironment {
     }
 
     initCamera = () => {
-        this.camera = new PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 5000);
+        this.camera = new PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 10000);
         this.camera.position.set(0, 2500, 0);
     }
 

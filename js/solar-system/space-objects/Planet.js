@@ -10,8 +10,8 @@ export class Planet extends SpaceSphereObject {
 
     satellites = new Map();
 
-    constructor(radius, widthSegments, heightSegments, color, emissive) {
-        super(radius, widthSegments, heightSegments, color, emissive);
+    constructor(radius, widthSegments, heightSegments, color, emissive, material) {
+        super(radius, widthSegments, heightSegments, color, emissive, material);
         this.planetSystem.add(this.sphereGeometry);
     }
 

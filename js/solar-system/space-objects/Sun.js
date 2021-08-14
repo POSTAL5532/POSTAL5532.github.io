@@ -1,9 +1,17 @@
+import * as THREE from "../../three.module.js";
 import {SpaceSphereObject} from "../SpaceSphereObject.js";
+
+const {MeshBasicMaterial, MeshPhongMaterial, TextureLoader} = THREE;
 
 export class Sun extends SpaceSphereObject {
 
     constructor() {
-        super(100, 12, 12, undefined, "#FFFF00");
+        super(100, 24, 24, undefined, "#FFFF00");
         this.rotationSpeed = 0.003;
+    }
+
+    getMeshPhongMaterial(color, emissive) {
+        const loader = new TextureLoader();
+        return new MeshBasicMaterial({map: loader.load("images/solar-system/sun_texture.jpg")});
     }
 }

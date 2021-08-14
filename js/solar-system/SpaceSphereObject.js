@@ -7,13 +7,19 @@ export class SpaceSphereObject extends RotatableObject {
 
     sphereGeometry;
 
-    constructor(radius, widthSegments = 6, heightSegments = 6, color, emissive) {
+    constructor(radius, widthSegments = 6, heightSegments = 6, color, emissive, material) {
         super();
-        this.initSphereGeometry(radius, widthSegments, heightSegments, color, emissive);
+        this.initSphereGeometry(radius, widthSegments, heightSegments, color, emissive, material);
     }
 
-    initSphereGeometry = (radius, widthSegments, heightSegments, color, emissive) => {
+    initSphereGeometry = (radius, widthSegments, heightSegments, color, emissive, material) => {
         const geometry = new SphereGeometry(radius, widthSegments, heightSegments);
+        const resultMaterial = material ? material : this.getMeshPhongMaterial(color, emissive);
+
+        this.sphereGeometry = new Mesh(geometry, resultMaterial);
+    }
+
+    getMeshPhongMaterial(color, emissive) {
         const material = new MeshPhongMaterial();
 
         if (color) {
@@ -24,7 +30,7 @@ export class SpaceSphereObject extends RotatableObject {
             material.setValues({emissive});
         }
 
-        this.sphereGeometry = new Mesh(geometry, material);
+        return material
     }
 
     getObject = () => {
