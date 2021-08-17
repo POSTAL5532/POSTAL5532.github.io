@@ -24,9 +24,9 @@ export class Orbit extends RotatableObject {
 
     getOrbitCircle = (radius) => {
         const path = new Path();
-        path.absellipse(0, 0, radius, radius, 0, 6.28, false, 0);
+        path.absarc(0, 0, radius, 0, 6.28, false);
 
-        const geometry = new BufferGeometry().setFromPoints(path.getPoints());
+        const geometry = new BufferGeometry().setFromPoints(path.getPoints(48));
         const material = new LineBasicMaterial({color: "#6f6f6f"});
         const line = new Line(geometry, material);
         line.rotateX(1.57)
