@@ -2,7 +2,7 @@ import * as THREE from "../../../three.module.js";
 import {Planet} from "../Planet.js";
 import {Moon} from "./Moon.js";
 
-const {MeshBasicMaterial, TextureLoader} = THREE;
+const {MeshPhongMaterial, TextureLoader, Color} = THREE;
 
 export const MOON_SATELLITE_NAME = "moon";
 
@@ -15,7 +15,14 @@ export class Earth extends Planet {
 
     getMeshPhongMaterial(color, emissive) {
         const loader = new TextureLoader();
-        return new MeshBasicMaterial({map: loader.load("images/solar-system/earth_texture.jpg")});
+        const material = new MeshPhongMaterial();
+        material.map = loader.load("images/solar-system/earth_texture.jpg");
+        material.bumpMap = loader.load("images/solar-system/earth_texture_bump.jpg");
+        material.bumpScale = 2;
+        material.specularMap = THREE.ImageUtils.loadTexture("images/solar-system/earth_texture_specular.jpg")
+        material.specular  = new Color("grey")
+
+        return material;
     }
 
     initEarthSystem = () => {

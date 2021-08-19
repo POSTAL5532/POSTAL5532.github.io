@@ -37,7 +37,7 @@ export class SolarSystem {
 
     addSun = () => {
         this.addToSceneAndObjects(new Sun());
-        this.sceneEnvironment.addNativeToScene(new PointLight("#FFFFFF", 3));
+        this.sceneEnvironment.addNativeToScene(new PointLight("#FFFFFF", 1));
     }
 
     addMercury = () => {
