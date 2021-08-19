@@ -15,6 +15,8 @@ export class SceneEnvironment {
 
     controls;
 
+    doeCustomAnimation = true;
+
     constructor(animateCallback) {
         this.animateCallback = animateCallback;
         this.init();
@@ -26,6 +28,7 @@ export class SceneEnvironment {
         this.initCamera();
         document.body.appendChild(this.renderer.domElement);
         this.initControls();
+        this.registerAnimationControlListener();
 
         this.animate();
     }
@@ -80,8 +83,15 @@ export class SceneEnvironment {
         }
     }
 
+    registerAnimationControlListener = () => {
+        document.getElementById("animation-control").addEventListener("click", () => {
+            this.doeCustomAnimation = !this.doeCustomAnimation;
+            this.controls.minDistance = this.doeCustomAnimation ? 500 : 100;
+        })
+    }
+
     animate = () => {
-        !!this.animateCallback && this.animateCallback();
+        this.doeCustomAnimation && !!this.animateCallback && this.animateCallback();
         this.updateCameraParams();
         this.controls.update();
         this.renderer.render(this.scene, this.camera);
