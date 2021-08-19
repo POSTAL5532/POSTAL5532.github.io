@@ -6,6 +6,7 @@ import {Earth} from "./space-objects/earth/Earth.js";
 import {Venus} from "./space-objects/Venus.js";
 import {Mercury} from "./space-objects/Mercury.js";
 import {Mars} from "./space-objects/mars/Mars.js";
+import {SpaceSkySphere} from "./SpaceSkySphere.js";
 
 const {PointLight} = THREE;
 
@@ -22,11 +23,16 @@ export class SolarSystem {
     }
 
     prepareSystemObjects = () => {
+        this.addSkySphere();
         this.addSun();
         this.addEarth();
         this.addVenus();
         this.addMercury();
         this.addMars();
+    }
+
+    addSkySphere = () => {
+        this.sceneEnvironment.addToScene(new SpaceSkySphere());
     }
 
     addSun = () => {

@@ -36,14 +36,16 @@ export class SceneEnvironment {
     }
 
     initCamera = () => {
-        this.camera = new PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 10000);
-        this.camera.position.set(0, 2500, 0);
+        this.camera = new PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 120000);
+        this.camera.position.set(0, 2500, 3000);
     }
 
     initControls = () => {
         this.controls = new OrbitControls(this.camera, this.renderer.domElement);
         this.controls.enablePan = true;
         this.controls.enableDamping = true;
+        this.controls.maxDistance = 2500;
+        this.controls.minDistance = 500;
         this.controls.update();
     }
 
