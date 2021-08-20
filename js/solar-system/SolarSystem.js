@@ -42,7 +42,7 @@ export class SolarSystem {
 
     addMercury = () => {
         const mercury = new Mercury();
-        const orbit = this.addPlanet(mercury, 200, 0.01, 35);
+        const orbit = this.addPlanet(mercury, 200, 0.008, 35);
 
         this.addToSceneAndObjects(orbit);
         this.objectsToRotation.push(mercury);
@@ -50,7 +50,7 @@ export class SolarSystem {
 
     addVenus = () => {
         const venus = new Venus();
-        const orbit = this.addPlanet(venus, 400, 0.007, 60);
+        const orbit = this.addPlanet(venus, 400, 0.003, 60);
 
         this.addToSceneAndObjects(orbit);
         this.objectsToRotation.push(venus);
@@ -58,27 +58,18 @@ export class SolarSystem {
 
     addEarth = () => {
         const earth = new Earth();
-        const moonSatellite = earth.getMoonSatellite();
-        const orbit = this.addPlanet(earth, 600, 0.005);
+        const orbit = this.addPlanet(earth, 600, 0.002);
 
         this.addToSceneAndObjects(orbit);
-        this.objectsToRotation.push(earth, moonSatellite.satelliteOrbit, moonSatellite.satellite);
+        this.objectsToRotation.push(earth);
     }
 
     addMars = () => {
         const mars = new Mars();
-        const deimosSatellite = mars.getDeimosSatellite();
-        const phobosSatellite = mars.getPhobosSatellite()
-        const orbit = this.addPlanet(mars, 800, 0.005, 90);
+        const orbit = this.addPlanet(mars, 800, 0.001, 90);
 
         this.addToSceneAndObjects(orbit);
-        this.objectsToRotation.push(
-            mars,
-            deimosSatellite.satelliteOrbit,
-            deimosSatellite.satellite,
-            phobosSatellite.satelliteOrbit,
-            phobosSatellite.satellite
-        );
+        this.objectsToRotation.push(mars);
     }
 
     addPlanet = (planet, offset, rotationSpeed, radialOffset) => {
@@ -102,7 +93,7 @@ export class SolarSystem {
 
     rotateObjects = () => {
         this.objectsToRotation.forEach(object => {
-            object.rotateObjectY();
+            object.animate();
         })
     }
 }

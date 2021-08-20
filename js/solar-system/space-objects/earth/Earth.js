@@ -20,19 +20,23 @@ export class Earth extends Planet {
         material.bumpMap = loader.load("images/solar-system/earth_texture_bump.jpg");
         material.bumpScale = 2;
         material.specularMap = THREE.ImageUtils.loadTexture("images/solar-system/earth_texture_specular.jpg")
-        material.specular  = new Color("grey")
+        material.specular = new Color("grey")
 
         return material;
     }
 
     initEarthSystem = () => {
-        const moon = new Moon();
-        const result = this.addSatellite(moon, 80, MOON_SATELLITE_NAME);
-        result.satelliteOrbit.inverseRotation = true;
-        result.satelliteOrbit.rotationSpeed = 0.03;
+        this.addSatellite(new Moon(), 80, MOON_SATELLITE_NAME);
     }
 
     getMoonSatellite = () => {
         return this.getSatellite(MOON_SATELLITE_NAME);
+    }
+
+    animate = () => {
+        this.getObject().rotation.y += 0.002;
+        const moon = this.getMoonSatellite();
+        moon.satelliteOrbit.getObject().rotation.y -= 0.004;
+        moon.satellite.getObject().rotation.y += 0.002;
     }
 }

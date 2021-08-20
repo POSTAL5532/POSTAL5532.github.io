@@ -7,6 +7,8 @@ export class Orbit extends RotatableObject {
 
     orbit = new Object3D();
 
+    rotationSpeed = 0.01;
+
     addObject = (object, offset, showOrbit) => {
         const nativeObject = object.getObject();
         this.orbit.add(nativeObject);
@@ -32,6 +34,10 @@ export class Orbit extends RotatableObject {
         line.rotateX(1.57)
 
         return line;
+    }
+
+    animate = () => {
+        this.getObject().rotation.y += this.rotationSpeed;
     }
 }
 

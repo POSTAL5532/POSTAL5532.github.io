@@ -5,4 +5,8 @@ export class Venus extends Planet {
     constructor() {
         super(30, 12, 12, "#6b552a", "#2b1909");
     }
+
+    animate = () => {
+        this.getObject().rotation.y += 0.002;
+    }
 }

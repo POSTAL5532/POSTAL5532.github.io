@@ -9,19 +9,15 @@ export class Mars extends Planet {
 
     constructor() {
         super(30, 12, 12, "#58482a", "#3d230c");
-        this.initEarthSystem();
+        this.initMarsSystem();
     }
 
-    initEarthSystem = () => {
+    initMarsSystem = () => {
         const deimos = new Deimos();
-        const deimosResult = this.addSatellite(deimos, 80, DEIMOS_SATELLITE_NAME, 30);
-        deimosResult.satelliteOrbit.inverseRotation = false;
-        deimosResult.satelliteOrbit.rotationSpeed = 0.01;
+        this.addSatellite(deimos, 80, DEIMOS_SATELLITE_NAME, 30);
 
         const phobos = new Phobos();
-        const phobosResult = this.addSatellite(phobos, 60, PHOBOS_SATELLITE_NAME, 60);
-        phobosResult.satelliteOrbit.inverseRotation = true;
-        phobosResult.satelliteOrbit.rotationSpeed = 0.02;
+        this.addSatellite(phobos, 60, PHOBOS_SATELLITE_NAME, 60);
     }
 
     getDeimosSatellite = () => {
@@ -30,5 +26,17 @@ export class Mars extends Planet {
 
     getPhobosSatellite = () => {
         return this.getSatellite(PHOBOS_SATELLITE_NAME);
+    }
+
+    animate = () => {
+        this.getObject().rotation.y += 0.01;
+
+        const deimos = this.getDeimosSatellite();
+        deimos.satelliteOrbit.getObject().rotation.y += 0.002;
+        deimos.satellite.getObject().rotation.y += 0.002;
+
+        const phobos = this.getPhobosSatellite();
+        phobos.satelliteOrbit.getObject().rotation.y -= 0.002;
+        phobos.satellite.getObject().rotation.y += 0.002;
     }
 }
