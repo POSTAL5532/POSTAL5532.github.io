@@ -11,7 +11,7 @@ export class Earth extends Planet {
     clouds;
 
     constructor() {
-        super(40, 36, 36, "#2233FF", "#112244");
+        super(40, 36, 36);
         this.initEarthSystem();
     }
 
@@ -56,6 +56,7 @@ export class Earth extends Planet {
         this.clouds.rotation.y += 0.001;
         const moon = this.getMoonSatellite();
         moon.satelliteOrbit.getObject().rotation.y -= 0.004;
-        moon.satellite.getObject().rotation.y += 0.002;
+        moon.satellite.getObject().rotation.y += 0.007;
+        console.log(moon)
     }
 }
