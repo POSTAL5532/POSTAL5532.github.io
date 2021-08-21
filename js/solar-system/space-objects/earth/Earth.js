@@ -1,6 +1,7 @@
 import * as THREE from "../../../three.module.js";
 import {Planet} from "../Planet.js";
 import {Moon} from "./Moon.js";
+import {createAtmosphereMaterial} from "../../utils.js";
 
 const {TextureLoader, Color, SphereGeometry, DoubleSide, Mesh} = THREE;
 
@@ -30,6 +31,7 @@ export class Earth extends Planet {
     initEarthSystem = () => {
         this.addSatellite(new Moon(), 80, MOON_SATELLITE_NAME);
         this.addClouds();
+        this.addGlow();
     }
 
     addClouds = () => {
@@ -47,16 +49,28 @@ export class Earth extends Planet {
         this.getPlanetObject().add(this.clouds);
     }
 
+    addGlow = () => {
+        let geometry = new SphereGeometry(41, 36, 36)
+        let material = createAtmosphereMaterial()
+        material.side	= THREE.BackSide
+        material.uniforms.glowColor.value.set(0x00b3ff)
+        material.uniforms.coeficient.value	= 0.5
+        material.uniforms.power.value		= 4.0
+        let mesh = new Mesh(geometry, material);
+        mesh.scale.multiplyScalar(1.05);
+
+        this.getObject().add(mesh);
+    }
+
     getMoonSatellite = () => {
         return this.getSatellite(MOON_SATELLITE_NAME);
     }
 
     animate = () => {
-        this.getObject().rotation.y += 0.002;
+        this.getPlanetObject().rotation.y += 0.002;
         this.clouds.rotation.y += 0.001;
         const moon = this.getMoonSatellite();
-        moon.satelliteOrbit.getObject().rotation.y -= 0.004;
+        moon.satelliteOrbit.getObject().rotation.y -= 0.002;
         moon.satellite.getObject().rotation.y += 0.007;
-        console.log(moon)
     }
 }
